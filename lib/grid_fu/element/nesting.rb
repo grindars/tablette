@@ -17,14 +17,21 @@ module GridFu
       #   end
       #
       #   table.body.first.to_html # <tbody>...</tbody>
-      def nest(accessor_name, klass)
+      def nest(accessor_name, klass, opts = {})
+        ivar_name = opts[:ivar_name] || accessor_name
+        merge_children = opts[:merge_children] || false
+
         define_method accessor_name do |*args, &block|
-          items = instance_variable_get("@#{accessor_name}") || []
+          items = instance_variable_get("@#{ivar_name}") || []
           return items if args.blank? && block.blank?
 
           value = klass.new(*args, &block)
-          items.push(value)
-          instance_variable_set("@#{accessor_name}", items)
+          if merge_children && items.any?
+            items.first.merge_with! value
+          else
+            items.push(value)
+          end
+          instance_variable_set("@#{ivar_name}", items)
           value
         end
         protected accessor_name

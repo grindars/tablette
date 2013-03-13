@@ -8,6 +8,14 @@ module GridFu
       super(*args, &nil)
     end
 
+    def colspan(args)
+      override_html_options, html_options =
+        get_options([:override_html_options, :html_options], *args)
+
+      options = override_html_options.merge html_options
+      options[:colspan]
+    end
+
     protected
     attr_accessor :key, :value
   end

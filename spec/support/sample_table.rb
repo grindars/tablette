@@ -26,12 +26,10 @@ def sample_table_full_described_definition
   GridFu::Table.new do
     html_options class: 'table'
 
-    header do
-      row do
-        column 'Id', html_options: { colspan: 5 }
-        column do
-          'Doctor strangelove'
-        end
+    header! do
+      column 'Id', html_options: { colspan: 5 }
+      column do
+        'Doctor strangelove'
       end
     end
 
@@ -66,11 +64,7 @@ def sample_table_full_described_definition
     end
 
     footer do
-      row do
-        column html_options: { rowspan: 3 } do
-          "On foot"
-        end
-      end
+      "On foot"
     end
   end
 end
@@ -94,7 +88,7 @@ end
 
 def sample_table_active_record
   table = GridFu::Table.new do
-    header do
+    header! do
       column :id
       column :age
       column "Custom string"

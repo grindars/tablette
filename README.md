@@ -22,7 +22,7 @@ Or install it yourself as:
 Somwhere in your app:
 
 ```ruby
-short_table = GridFu.define do
+short_table = GridFu::Table.new do
   column :id
   column :name
 end
@@ -45,7 +45,7 @@ You will see following:
 ## Full definition
 
 ```ruby
-table = GridFu.define do
+table = GridFu::Table.new do
   html_options class: 'table'
 
   header do

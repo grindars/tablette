@@ -23,7 +23,7 @@ def sample_formatter(key, member, index)
 end
 
 def sample_table_full_described_definition
-  GridFu.define do
+  GridFu::Table.new do
     html_options class: 'table'
 
     header do
@@ -80,7 +80,7 @@ def sample_table_full_described
 end
 
 def sample_table_short
-  table = GridFu.define do
+  table = GridFu::Table.new do
     header do
       column 'Id'
       column 'Age'
@@ -93,7 +93,7 @@ def sample_table_short
 end
 
 def sample_table_active_record
-  table = GridFu.define do
+  table = GridFu::Table.new do
     header do
       column :id
       column :age

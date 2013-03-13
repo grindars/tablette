@@ -14,10 +14,3 @@ require 'grid_fu/rows'
 require 'grid_fu/sections'
 require 'grid_fu/table'
 
-module GridFu
-  # TODO: Custom table class
-  def define(*args, &block)
-    Table.new(*args, &block)
-  end
-  module_function :define
-end

@@ -2,12 +2,21 @@ module GridFu
   class Element
     # Translates element to html tag.
     def to_html(*args)
-      tag, override_html_options, html_options =
-        get_options([:tag, :override_html_options, :html_options], *args)
+      tag, override_html_options, user_html_options, builtin_html_options =
+        get_options([:tag, :override_html_options, :html_options, :builtin_html_options], *args)
 
       raise "Set tag option for #{self.class.name}" if tag.blank?
 
-      html_options = override_html_options.merge(html_options)
+      html_options = override_html_options.merge user_html_options
+
+      builtin_html_options.each do |key, value|
+        if html_options.include? key
+          html_options[key] = "#{value} #{html_options[key]}"
+        else
+          html_options[key] = value
+        end
+      end
+
       html_options = _to_html_args(html_options)
 
       html = []

@@ -1,8 +1,32 @@
 module GridFu
   class Column < Element
+    config.tag = 'td'
+
     def initialize(*args, &block)
       self.value = block
       self.key   = args.first if args.first.is_a?(String) or args.first.is_a?(Symbol)
+
+      config.builtin_html_options = ->(member, index = nil) do
+        classes = []
+
+        if self.key.present?
+          classes << self.key.to_s
+        end
+
+        if index.kind_of? Numeric
+          if index.odd?
+            classes << "odd"
+          else
+            classes << "even"
+          end
+        end
+
+        if classes.any?
+          { :class => classes.join(" ") }
+        else
+          {}
+        end
+      end
 
       # Bypass block evaling: in this case it's not a config but a value formatter
       super(*args, &nil)
@@ -21,8 +45,6 @@ module GridFu
   end
 
   class BodyColumn < Column
-    config.tag = 'td'
-
     protected
     def html_content(member, index)
       value = self.value.call(member, index) if self.value.present?

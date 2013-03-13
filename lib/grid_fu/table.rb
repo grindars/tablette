@@ -8,6 +8,6 @@ module GridFu
     nest :body, Body
     nest :footer, Footer
 
-    nest_through :body, :row, :cell
+    nest_through :body, :row, :column
   end
 end

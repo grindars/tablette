@@ -28,8 +28,8 @@ def sample_table_full_described_definition
 
     header do
       row do
-        cell 'Id', html_options: { colspan: 5 }
-        cell do
+        column 'Id', html_options: { colspan: 5 }
+        column do
           'Doctor strangelove'
         end
       end
@@ -42,14 +42,14 @@ def sample_table_full_described_definition
           { data: { id: member.id, index: index } }
         end
 
-        cell html_options: ->(member, _) { { data: { value: member.id } } } do |_, index|
+        column html_options: ->(member, _) { { data: { value: member.id } } } do |_, index|
           index
         end
-        cell :id
-        cell :age do |member, _|
+        column :id
+        column :age do |member, _|
           "Dead at #{member.age}"
         end
-        cell do |_, index|
+        column do |_, index|
           sample_helper_function(index)
         end
       end
@@ -57,17 +57,17 @@ def sample_table_full_described_definition
       row html_options: { class: 'small' } do
         tag 'overriden_tr'
 
-        cell :test do
+        column :test do
           "test"
         end
 
-        cell :age, formatter: :sample_formatter
+        column :age, formatter: :sample_formatter
       end
     end
 
     footer do
       row do
-        cell html_options: { rowspan: 3 } do
+        column html_options: { rowspan: 3 } do
           "On foot"
         end
       end
@@ -82,12 +82,12 @@ end
 def sample_table_short
   table = GridFu.define do
     header do
-      cell 'Id'
-      cell 'Age'
+      column 'Id'
+      column 'Age'
     end
 
-    cell :id
-    cell :age
+    column :id
+    column :age
   end
   table.to_html(sample_collection)
 end
@@ -95,15 +95,15 @@ end
 def sample_table_active_record
   table = GridFu.define do
     header do
-      cell :id
-      cell :age
-      cell "Custom string"
-      cell do
+      column :id
+      column :age
+      column "Custom string"
+      column do
         "Custom block"
       end
     end
-    cell :id
-    cell :age
+    column :id
+    column :age
   end
   table.to_html(sample_collection, ActiveRecordMock)
 end

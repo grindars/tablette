@@ -1,9 +1,9 @@
 module GridFu
   class Row < Element
-    attr_reader :cells
+    attr_reader :columns
 
     config.tag = 'tr'
-    config.render_nested_elements = %w(cell)
+    config.render_nested_elements = %w(column)
   end
 
   class BodyRow < Row
@@ -11,22 +11,22 @@ module GridFu
       { data: { id: member.try(:id) } }
     }
 
-    nest :cell, BodyCell
+    nest :column, BodyColumn
 
     protected
     def html_content(member, index)
-      html = cell.map do |cell|
-        cell.to_html(member, index)
+      html = column.map do |column|
+        column.to_html(member, index)
       end
       html.join
     end
   end
 
   class HeaderRow < Row
-    nest :cell, HeaderCell
+    nest :column, HeaderColumn
   end
 
   class FooterRow < Row
-    nest :cell, FooterCell
+    nest :column, FooterColumn
   end
 end

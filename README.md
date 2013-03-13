@@ -23,8 +23,8 @@ Somwhere in your app:
 
 ```ruby
 short_table = GridFu.define do
-  cell :id
-  cell :name
+  column :id
+  column :name
 end
 
 puts short_table.to_html(collection, User)
@@ -50,8 +50,8 @@ table = GridFu.define do
 
   header do
     row do
-      cell 'Id', html_options: { colspan: 5 }
-      cell do
+      column 'Id', html_options: { colspan: 5 }
+      column do
         'Doctor strangelove'
       end
     end
@@ -64,14 +64,14 @@ table = GridFu.define do
         { data: { id: member.id, index: index } }
       end
 
-      cell html_options: ->(member, _) { { data: { value: member.id } } } do |_, index|
+      column html_options: ->(member, _) { { data: { value: member.id } } } do |_, index|
         index
       end
-      cell :id
-      cell :age do |member, _|
+      column :id
+      column :age do |member, _|
         "Dead at #{member.age}"
       end
-      cell do |_, index|
+      column do |_, index|
         sample_helper_function(index)
       end
     end
@@ -79,17 +79,17 @@ table = GridFu.define do
     row html_options: { class: 'small' } do
       tag 'overriden_tr'
 
-      cell :test do
+      column :test do
         "test"
       end
 
-      cell :age, formatter: :sample_formatter
+      column :age, formatter: :sample_formatter
     end
   end
 
   footer do
     row do
-      cell html_options: { rowspan: 3 } do
+      column html_options: { rowspan: 3 } do
         "On foot"
       end
     end
@@ -109,7 +109,7 @@ Default HTML options are:
 * data-key - for tbody/tr/td.
 
 Options which are set by blocks accepts:
-* |member, index| - for row and cell inside body element.
+* |member, index| - for row and column inside body element.
 * |collection, klass = nil| - for table, header and footer (and all nested elements)
 * Same for body.
 
@@ -135,7 +135,7 @@ GridFu::HeaderRow.config.html_options = proc { |_, resource_class = nil|
 ```
 
 You can use: Table, Header, Body, Footer, HeaderRow, BodyRow, FooterRow,
-HeaderCell, BodyCell, FooterCell.
+HeaderColumn, BodyColumn, FooterColumn.
 
 So, you can replace table with ordered list or something you need.
 
@@ -156,8 +156,8 @@ table.element_to_html(:footer, collection, User)
 3. Data attrs for everything.
 4. Authospan.
 5. :row as parameter.
-6. Reusable cells
-7. Shortened cell definition
+6. Reusable columns
+7. Shortened column definition
 8. GridFu.render() do
 
 ## Contributing

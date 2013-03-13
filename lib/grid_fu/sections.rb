@@ -7,7 +7,7 @@ module GridFu
     config.tag = 'tbody'
 
     nest :row, BodyRow
-    nest_through :row, :cell
+    nest_through :row, :column
 
     protected
     def html_content(collection, resource_class = nil)
@@ -22,13 +22,13 @@ module GridFu
     config.tag = 'thead'
 
     nest :row, HeaderRow
-    nest_through :row, :cell
+    nest_through :row, :column
   end
 
   class Footer < Section
     config.tag = 'tfoot'
 
     nest :row, FooterRow
-    nest_through :row, :cell
+    nest_through :row, :column
   end
 end

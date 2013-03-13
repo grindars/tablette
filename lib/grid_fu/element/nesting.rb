@@ -38,14 +38,14 @@ module GridFu
       #   end
       #
       #   class Table < Element
-      #     nest_through :body, :row, :cell # Table#cell calls .body.row.cell
+      #     nest_through :body, :row, :column # Table#column calls .body.row.column
       #   end
       #
       #   table = Table.new do
-      #     cell :id
+      #     column :id
       #   end
       #
-      #   table.body.first.row.first.cell.first.to_html # <td data-name="id">...</td>
+      #   table.body.first.row.first.column.first.to_html # <td data-name="id">...</td>
       def nest_through(*chain)
         nested_method = chain.last
 

@@ -1,5 +1,5 @@
 module GridFu
-  class Cell < Element
+  class Column < Element
     def initialize(*args, &block)
       self.value = block
       self.key   = args.first if args.first.is_a?(String) or args.first.is_a?(Symbol)
@@ -12,7 +12,7 @@ module GridFu
     attr_accessor :key, :value
   end
 
-  class BodyCell < Cell
+  class BodyColumn < Column
     config.tag = 'td'
 
     protected
@@ -28,7 +28,7 @@ module GridFu
     end
   end
 
-  class HeaderCell < Cell
+  class HeaderColumn < Column
     config.tag = 'th'
 
     protected
@@ -42,7 +42,7 @@ module GridFu
     end
   end
 
-  class FooterCell < Cell
+  class FooterColumn < Column
     config.tag = 'td'
 
     protected

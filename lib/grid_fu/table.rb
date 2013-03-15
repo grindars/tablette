@@ -4,12 +4,18 @@ module GridFu
     config.render_nested_elements = %w(header! body footer!)
     config.allowed_configuration_options = %w(tag html_options)
     config.builtin_html_options = { :class => "grid_fu_slashadmin" }
-
+    
     nest :header!, Header, :ivar_name => :header, :merge_children => true
     nest :body, Body
     nest :footer!, Footer, :ivar_name => :footer, :merge_children => true
 
     nest_through :body, :row, :column
+    
+    def initialize(*args, &block)
+      @renderer = HTMLRenderer
+      
+      super
+    end
 
     def header(&block)
       header! do

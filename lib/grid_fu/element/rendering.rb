@@ -17,18 +17,7 @@ module GridFu
         end
       end
 
-      html_options = _to_html_args(html_options)
-
-      html = []
-
-      html << "<#{tag}"
-      html << " #{html_options}" if html_options.present?
-      html << '>'
-
-      html << html_content(*args).to_s
-
-      html << "</#{tag}>"
-      html.join
+      @renderer.produce_element tag, html_options, html_content(*args)
     end
 
     def element_to_html(element, *args)
@@ -46,29 +35,12 @@ module GridFu
       end
 
       html = nested.map do |element|
-        self.send(element).map { |element| element.to_html(*args) }.join
+        self.send(element).map { |element| element.to_html(*args) }
       end
-      html.join
+      html.flatten
     end
 
     private
-    # Translates html_options to HTML attributes string. Accepts nested
-    # data-attributes.
-    #
-    # Example:
-    #   _to_html_args(ref: true, data: { id: 1 }) # ref="true" data-id="1"
-    def _to_html_args(options, prepend = nil)
-      options = options || {}
-      html_args = options.map do |key, value|
-        if value.is_a?(Hash)
-          _to_html_args(value, key)
-        else
-          key = "#{prepend}-#{key}" if prepend.present?
-          %{#{key}="#{value}"}
-        end
-      end
-      html_args.join(' ')
-    end
 
     # Gets given option values. If an option is a block - yields it and
     # returns value.

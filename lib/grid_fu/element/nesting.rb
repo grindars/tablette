@@ -20,11 +20,21 @@ module GridFu
       def nest(accessor_name, klass, opts = {})
         ivar_name = opts[:ivar_name] || accessor_name
         merge_children = opts[:merge_children] || false
-
         define_method accessor_name do |*args, &block|
           items = instance_variable_get("@#{ivar_name}") || []
           return items if args.blank? && block.blank?
-
+          
+          inherited_config = {
+            :renderer => @renderer
+          }
+          
+          if args.last.kind_of? Hash
+            last = args.pop
+            args << last.merge(inherited_config)
+          else
+            args << inherited_config
+          end
+          
           value = klass.new(*args, &block)
           if merge_children && items.any?
             items.first.merge_with! value

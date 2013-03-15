@@ -13,4 +13,4 @@ require 'grid_fu/columns'
 require 'grid_fu/rows'
 require 'grid_fu/sections'
 require 'grid_fu/table'
-
+require 'grid_fu/html_renderer'

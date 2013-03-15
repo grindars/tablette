@@ -13,6 +13,7 @@ module GridFu
     
     def initialize(*args, &block)
       @renderer = HTMLRenderer
+      @helper = nil
       
       super
     end

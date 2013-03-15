@@ -1,9 +1,25 @@
 module GridFu
   module HTMLRenderer
+    def self.element=(element)
+    
+    end
+  
     def self.produce_element(tag, attributes, content)
       content = content.join if content.kind_of? Array
   
       "<#{tag} #{_to_html_args(attributes)}>#{content}</#{tag}>"
+    end
+  
+    def self.to_html(root)
+      if root.kind_of? Array
+        root.join
+      else
+        root
+      end
+    end
+
+    def self.wrap_content(proc)
+      proc
     end
 
     # Translates html_options to HTML attributes string. Accepts nested

@@ -25,7 +25,8 @@ module GridFu
           return items if args.blank? && block.blank?
           
           inherited_config = {
-            :renderer => @renderer
+            :renderer => @renderer,
+            :helper   => @helper
           }
           
           if args.last.kind_of? Hash

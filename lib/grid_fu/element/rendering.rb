@@ -16,12 +16,19 @@ module GridFu
           html_options[key] = value
         end
       end
-
-      @renderer.produce_element tag, html_options, html_content(*args)
+      
+      @renderer.element = self
+      begin
+        @renderer.produce_element tag, html_options, html_content(*args)
+      ensure
+        @renderer.element = nil
+      end
     end
 
     def element_to_html(element, *args)
-      send(element).map { |item| item.to_html(*args) }.join
+      send(element).map do |item|
+        item.to_html(*args)
+      end
     end
 
     protected
@@ -34,10 +41,7 @@ module GridFu
         raise "Set render_nested_elements options or override #html_content/#to_html for #{self.class.name}"
       end
 
-      html = nested.map do |element|
-        self.send(element).map { |element| element.to_html(*args) }
-      end
-      html.flatten
+      nested.map { |e| element_to_html(e, *args) }.flatten!(1)
     end
 
     private

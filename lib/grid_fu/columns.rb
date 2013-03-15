@@ -47,7 +47,7 @@ module GridFu
   class BodyColumn < Column
     protected
     def html_content(member, index)
-      value = self.value.call(member, index) if self.value.present?
+      value = @renderer.wrap_content(self.value).call(member, index) if self.value.present?
       value ||= member.send(key) if key.present? and member.respond_to?(key)
 
       if config.formatter.present?
@@ -63,7 +63,7 @@ module GridFu
 
     protected
     def html_content(collection, resource_class = nil)
-      return value.call(collection, resource_class) if value.is_a?(Proc)
+      return @renderer.wrap_content(value).call(collection, resource_class) if value.is_a?(Proc)
       if resource_class.respond_to?(:human_attribute_name) && key.present?
         resource_class.human_attribute_name(key)
       else
@@ -77,7 +77,7 @@ module GridFu
 
     protected
     def html_content(*args)
-      return value.call(*args) if value.is_a?(Proc)
+      return @renderer.wrap_content(value).call(*args) if value.is_a?(Proc)
       key
     end
   end

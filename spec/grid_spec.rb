@@ -35,10 +35,11 @@ describe 'Grid' do
 
   context 'partial rendering' do
     subject do
-      sample_table_full_described_definition.element_to_html(:body, sample_collection)
+      sample_table_full_described_definition.element_to_html(:body, sample_collection).join
     end
 
     it 'should render header, footer, body separately' do
+      
       subject.should_not have_tag 'thead'
       subject.should_not have_tag 'tfoot'
 

@@ -54,10 +54,9 @@ module GridFu
 
     protected
     def html_content(member, index)
-      html = column.map do |column|
+      column.map do |column|
         column.to_html(member, index)
       end
-      html.join
     end
   end
 

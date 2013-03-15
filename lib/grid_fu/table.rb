@@ -43,7 +43,7 @@ module GridFu
         section.update_auto_colspan! columns, args
       end
 
-      super
+      @renderer.to_html(super)
     end
   end
 end

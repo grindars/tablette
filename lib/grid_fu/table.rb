@@ -13,13 +13,13 @@ module GridFu
 
     def header(&block)
       header! do
-        column(html_options: { colspan: 'auto'}) { yield }
+        column(html_options: { colspan: 'auto'}, &block)
       end
     end
 
     def footer(&block)
       footer! do
-        column(html_options: { colspan: 'auto'}) { yield }
+        column(html_options: { colspan: 'auto'}, &block)
       end
     end
 

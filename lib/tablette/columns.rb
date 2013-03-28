@@ -1,4 +1,4 @@
-module GridFu
+module Tablette
   class Column < Element
     config.tag = 'td'
 

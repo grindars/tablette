@@ -1,4 +1,4 @@
-module GridFu
+module Tablette
   class Row < Element
     attr_reader :columns
 

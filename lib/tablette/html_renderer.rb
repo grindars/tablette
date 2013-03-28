@@ -1,4 +1,4 @@
-module GridFu
+module Tablette
   module HTMLRenderer
     def self.element=(element)
     

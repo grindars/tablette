@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
 
-require 'grid_fu'
+require 'tablette'
 require 'support/sample_table'
 require 'rspec-html-matchers'
 

@@ -1,4 +1,4 @@
-module GridFu
+module Tablette
   class Section < Element
     config.render_nested_elements = %w(row)
 

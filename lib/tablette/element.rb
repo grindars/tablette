@@ -1,4 +1,4 @@
-module GridFu
+module Tablette
   class Element
     include ActiveSupport::Configurable
 

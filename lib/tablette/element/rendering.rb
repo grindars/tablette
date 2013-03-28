@@ -1,4 +1,4 @@
-module GridFu
+module Tablette
   class Element
     # Translates element to html tag.
     def to_html(*args)

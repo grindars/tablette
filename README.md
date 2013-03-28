@@ -1,4 +1,4 @@
-# GridFu
+# Tablette
 
 Inspired by discussion at: https://github.com/evilmartians/slashadmin/issues/3.
 Rails table renderer that tries to be flexible.
@@ -7,7 +7,7 @@ Rails table renderer that tries to be flexible.
 
 Add this line to your application's Gemfile:
 
-    gem 'grid_fu'
+    gem 'tablette'
 
 And then execute:
 
@@ -15,14 +15,14 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install grid_fu
+    $ gem install tablette
 
 ## Usage
 
 Somwhere in your app:
 
 ```ruby
-short_table = GridFu::Table.new do
+short_table = Tablette::Table.new do
   column :id
   column :name
 end
@@ -45,7 +45,7 @@ You will see following:
 ## Full definition
 
 ```ruby
-table = GridFu::Table.new do
+table = Tablette::Table.new do
   html_options class: 'table'
 
   header do
@@ -128,8 +128,8 @@ Table elements can be customized at application level.
 Somewhere in initializer:
 
 ```ruby
-GridFu::Table.config.html_options     = { class: 'table' }
-GridFu::HeaderRow.config.html_options = proc { |_, resource_class = nil|
+Tablette::Table.config.html_options     = { class: 'table' }
+Tablette::HeaderRow.config.html_options = proc { |_, resource_class = nil|
   { class: resource_class.name.underscore }
 }
 ```
@@ -158,7 +158,7 @@ table.element_to_html(:footer, collection, User)
 5. :row as parameter.
 6. Reusable columns
 7. Shortened column definition
-8. GridFu.render() do
+8. Tablette.render() do
 
 ## Contributing
 

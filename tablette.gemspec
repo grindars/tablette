@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'grid_fu/version'
+require 'tablette/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = "grid_fu"
-  gem.version       = GridFu::VERSION
-  gem.authors       = ["Victor Sokolov"]
-  gem.email         = ["gzigzigzeo@gmail.com"]
+  gem.name          = "tablette"
+  gem.version       = Tablette::VERSION
+  gem.authors       = ["Victor Sokolov", "Sergey Gridasov"]
+  gem.email         = ["gzigzigzeo@gmail.com", "grindars@gmail.com"]
   gem.description   = %q{HTML table generator}
   gem.summary       = %q{HTML table generator}
   gem.homepage      = ""

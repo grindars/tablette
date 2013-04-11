@@ -12,7 +12,7 @@ module Tablette
     nest_through :body, :row, :column
     
     def initialize(*args, &block)
-      @renderer = HTMLRenderer
+      @renderer = HTMLRenderer.new
       @helper = nil
       
       super

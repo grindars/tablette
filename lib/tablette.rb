@@ -14,3 +14,7 @@ require 'tablette/rows'
 require 'tablette/sections'
 require 'tablette/table'
 require 'tablette/html_renderer'
+
+if defined? ActionView::Base
+    require 'tablette/action_view'
+end

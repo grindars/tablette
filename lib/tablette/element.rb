@@ -18,8 +18,8 @@ module Tablette
       config.merge!(options)
     end
 
-    def respond_to?(method)
-      super || @helper.respond_to?(method) || config.allowed_configuration_options.include?(method.to_s)
+    def respond_to_missing?(method, include_private = false)
+      super || @helper.respond_to?(method, include_private) || config.allowed_configuration_options.include?(method.to_s)
     end
   
     def method_missing(method, *args, &block)

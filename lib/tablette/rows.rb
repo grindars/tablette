@@ -46,9 +46,13 @@ module Tablette
   end
 
   class BodyRow < Row
-    config.override_html_options = proc { |member, index|
-      { data: { id: member.try(:id) } }
-    }
+    config.override_html_options = proc do |member, index|
+      if !member.nil? && member.respond_to?(:id)
+        { data: { id: member.id } }
+      else
+        {}
+      end
+    end
 
     nest :column, BodyColumn
 

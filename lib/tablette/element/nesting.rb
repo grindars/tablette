@@ -24,16 +24,11 @@ module Tablette
           items = instance_variable_get("@#{ivar_name}") || []
           return items if args.blank? && block.blank?
           
-          inherited_config = {
-            :renderer => @renderer,
-            :helper   => @helper
-          }
-          
           if args.last.kind_of? Hash
             last = args.pop
-            args << last.merge(inherited_config)
+            args << last.merge(self.inherited_config)
           else
-            args << inherited_config
+            args << self.inherited_config
           end
           
           value = klass.new(*args, &block)
@@ -45,7 +40,6 @@ module Tablette
           instance_variable_set("@#{ivar_name}", items)
           value
         end
-        protected accessor_name
       end
 
       # Defines top-level shortcut DSL method.
@@ -71,6 +65,16 @@ module Tablette
           _get_chained(self, chain.dup, *args, &block)
         end
       end
+    end
+
+    protected
+
+    def inherited_config
+      {
+        :renderer       => @renderer,
+        :helper         => @helper,
+        :header_builder => @header_builder
+      }
     end
 
     private

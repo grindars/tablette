@@ -1,8 +1,8 @@
 require 'ostruct'
 
-class ActiveRecordMock
-  def self.human_attribute_name(name)
-    "Humanized #{name.to_s}"
+class TestHeaderBuilder
+  def build(key)
+    [ {}, proc { "#{key} header" } ]
   end
 end
 
@@ -74,12 +74,7 @@ def sample_table_full_described
 end
 
 def sample_table_short
-  table = Tablette::Table.new do
-    header do
-      column 'Id'
-      column 'Age'
-    end
-
+  table = Tablette::Table.new(:header_builder => TestHeaderBuilder.new) do
     column :id
     column :age
   end
@@ -99,5 +94,5 @@ def sample_table_active_record
     column :id
     column :age
   end
-  table.to_html(sample_collection, ActiveRecordMock)
+  table.to_html(sample_collection)
 end

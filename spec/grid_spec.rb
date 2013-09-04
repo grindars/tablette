@@ -59,8 +59,20 @@ describe 'Grid' do
         with_tag 'tr', count: 4
       end
     end
+
+    it 'should have automatically generated header' do
+      subject.should have_tag 'table', count: 1 do
+        with_tag 'tbody', count: 1
+        with_tag 'thead', count: 1 do
+          with_tag 'th', text: 'id header', count: 1
+          with_tag 'th', text: 'age header', count: 1
+        end
+        with_tag 'tr', count: 4
+      end
+    end
   end
 
+=begin
   context 'with active record objects' do
     subject { sample_table_active_record }
 
@@ -73,4 +85,5 @@ describe 'Grid' do
       subject.should_not have_tag 'tfoot'
     end
   end
+=end
 end

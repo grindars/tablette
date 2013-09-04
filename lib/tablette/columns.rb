@@ -40,8 +40,10 @@ module Tablette
       options[:colspan]
     end
 
+    attr_reader :key, :value
+
     protected
-    attr_accessor :key, :value
+    attr_writer :key, :value
   end
 
   class BodyColumn < Column
@@ -64,11 +66,7 @@ module Tablette
     protected
     def html_content(collection, resource_class = nil)
       return @renderer.wrap_content(value).call(collection, resource_class) if value.is_a?(Proc)
-      if resource_class.respond_to?(:human_attribute_name) && key.present?
-        resource_class.human_attribute_name(key)
-      else
-        key
-      end
+      key
     end
   end
 

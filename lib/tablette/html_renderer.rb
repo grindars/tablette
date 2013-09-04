@@ -7,7 +7,14 @@ module Tablette
     def produce_element(tag, attributes, content)
       content = content.join if content.kind_of? Array
   
-      "<#{tag} #{to_html_args(attributes)}>#{content}</#{tag}>"
+      buffer = "<#{tag}"
+      if attributes.any?
+        buffer << " #{to_html_args(attributes)}"
+      end
+
+      buffer << ">#{content}</#{tag}>"
+
+      buffer
     end
   
     def to_html(root)

@@ -6,13 +6,9 @@ module Tablette
     
     def initialize(*args, &definition)
       options = args.extract_options!
-      if options.include? :renderer
-        @renderer = options.delete :renderer
-      end
-      
-      if options.include? :helper
-        @helper = options.delete :helper
-      end
+      @renderer = options.delete(:renderer) { @renderer }
+      @helper = options.delete(:helper) { @helper }
+      @header_builder = options.delete(:header_builder) { @header_builder }
       
       instance_exec(&definition) if block_given?
       config.merge!(options)

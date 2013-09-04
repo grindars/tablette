@@ -2,6 +2,7 @@ require 'active_support/core_ext/object/blank'
 require 'active_support/core_ext/object/inclusion'
 require 'active_support/core_ext/string/inflections'
 require 'active_support/core_ext/object/try'
+require 'active_support/core_ext/array/wrap'
 require 'active_support/configurable'
 
 require 'tablette/version'

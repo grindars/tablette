@@ -71,19 +71,4 @@ describe 'Grid' do
       end
     end
   end
-
-=begin
-  context 'with active record objects' do
-    subject { sample_table_active_record }
-
-    it 'should get right headings from active record' do
-      subject.should have_tag 'thead', count: 1 do
-        with_tag 'th', text: 'Humanized id', count: 1
-        with_tag 'th', text: 'Humanized age', count: 1
-      end
-
-      subject.should_not have_tag 'tfoot'
-    end
-  end
-=end
 end
